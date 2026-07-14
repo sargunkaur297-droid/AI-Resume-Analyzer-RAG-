@@ -11,39 +11,99 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 st.markdown("""
 <style>
 
+/* Overall background */
 .stApp {
-    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    background: linear-gradient(
+        135deg,
+        #f5f3ff 0%,
+        #ecfeff 50%,
+        #f0fdf4 100%
+    );
 }
 
-/* Main title */
+/* Main heading */
 h1 {
-    color: #1e3a8a;
+    color: #312e81;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-/* Text */
-p {
-    color: #334155;
+/* Subheadings */
+h2, h3 {
+    color: #4338ca;
 }
+
+/* Normal text */
+p, label {
+    color: #374151;
+    font-size: 16px;
+}
+
+
+/* Upload box */
+[data-testid="stFileUploader"] {
+    background: rgba(255,255,255,0.75);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #ddd6fe;
+    box-shadow: 0px 8px 25px rgba(99,102,241,0.08);
+}
+
+
+/* Chat/input boxes */
+.stTextInput > div > div > input {
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #c4b5fd;
+}
+
 
 /* Buttons */
 .stButton > button {
-    background-color: #2563eb;
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #14b8a6
+    );
     color: white;
-    border-radius: 10px;
-    border: none;
-    padding: 10px 20px;
-}
-
-.stButton > button:hover {
-    background-color: #1d4ed8;
-}
-
-/* File uploader */
-[data-testid="stFileUploader"] {
-    background-color: rgba(255,255,255,0.7);
     border-radius: 15px;
-    padding: 10px;
+    padding: 12px 25px;
+    font-weight: 600;
+    border: none;
+    transition: 0.3s;
 }
+
+
+/* Button hover */
+.stButton > button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(
+        90deg,
+        #4f46e5,
+        #0d9488
+    );
+}
+
+
+/* Cards */
+div[data-testid="stMarkdownContainer"] {
+    background: rgba(255,255,255,0.55);
+    border-radius: 18px;
+}
+
+
+/* Success message */
+.stSuccess {
+    background-color: #dcfce7;
+    border-radius: 15px;
+}
+
+
+/* Warning/error boxes */
+.stAlert {
+    border-radius: 15px;
+}
+
 
 </style>
 """, unsafe_allow_html=True)
