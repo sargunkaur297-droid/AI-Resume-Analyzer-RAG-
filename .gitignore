@@ -1,0 +1,7 @@
+.venv/
+.env
+chroma-db/
+__pycache__/
+*.pyc
+tempCodeRunnerFile.py
+documentloaders/Sargun_Kaur_Updated_Resume.pdf

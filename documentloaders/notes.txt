@@ -1,0 +1,36 @@
+SARGUN KAUR
++91-6283166522 | sargunkaur297@gmail.com | linkedin.com/in/sargun-kaur
+OBJECTIVE
+Creative and analytical B.Tech CSE student skilled in frontend web development, UI/UX design, and foundational
+Machine Learning concepts. Proficient in Python, NumPy, Pandas, and data visualization techniques, with a passion
+for building responsive, user-focused, and data-driven applications.
+EDUCATION
+Guru Nanak Dev University, Amritsar
+Bachelor of Technology in Computer Science & Engineering (2023 – 2027) | CGPA: 6.92
+Cambridge Global School, Patiala
+Class XII – CBSE
+Our Lady of Fatima Convent Sr. Sec. School
+Class X – CBSE
+TECHNICAL SKILLS
+Programming Languages: C++, Python, Java, JavaScript (Basics)
+Core CS Concepts: Data Structures & Algorithms, Object-Oriented Programming (OOP), DBMS, Operating Systems
+Web & APIs: HTML, CSS, React.js, Node.js, Express.js, Responsive Web Design
+Machine Learning & Data Analysis: NumPy, Pandas, Matplotlib, Scikit-learn, Exploratory Data Analysis (EDA)
+Tools & Platforms: Git & GitHub, Google Workspace, VS Code
+PROJECTS
+Chattrix – Real-Time Chat App | MERN, Socket.io, JWT
+• Developed a real-time chat application using React.js, Node.js, Express.js, and MongoDB.
+• Implemented JWT-based authentication and real-time messaging using Socket.io.
+• Built REST APIs for user management and chat functionalities.
+Plant Disease Detection | TensorFlow/Keras, Python, Flask
+• Developed a CNN-based model for plant disease detection using image datasets.
+• Applied image preprocessing and model training techniques using TensorFlow and Keras.
+• Integrated the trained model with Flask for prediction and API handling.
+JalSaathi Website | HTML, CSS, React.js
+• Developed a responsive website for water scarcity awareness and management.
+• Designed clean and user-friendly interfaces with mobile-responsive layouts.
+• Implemented structured navigation and interactive frontend components using React.js.
+EXTRACURRICULAR ACTIVITIES
+• Designed posters, templates, and social media graphics using Canva and Figma.
+• Created visual content for academic and personal projects.
+• Participated in Smart India Hackathon (SIH) and collaborated on innovative problem-solving proj
