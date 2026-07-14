@@ -5,3 +5,12 @@ __pycache__/
 *.pyc
 tempCodeRunnerFile.py
 documentloaders/Sargun_Kaur_Updated_Resume.pdf
+# Chroma database
+
+chroma_db_*/
+
+# Temporary uploaded resumes
+temp_resume.pdf
+
+
+
