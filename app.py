@@ -8,6 +8,45 @@ from langchain_chroma import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+st.markdown("""
+<style>
+
+.stApp {
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+}
+
+/* Main title */
+h1 {
+    color: #1e3a8a;
+}
+
+/* Text */
+p {
+    color: #334155;
+}
+
+/* Buttons */
+.stButton > button {
+    background-color: #2563eb;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.stButton > button:hover {
+    background-color: #1d4ed8;
+}
+
+/* File uploader */
+[data-testid="stFileUploader"] {
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ----------------------------
 # Page Config
