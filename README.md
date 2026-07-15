@@ -101,49 +101,7 @@ AI-Resume-Analyzer-RAG/
         └── createdb.py
 ```
 
-## ⚙️ Installation & Setup
 
-Clone the repository:
-
-```bash
-git clone https://github.com/sargunkaur297-droid/AI-Resume-Analyzer-RAG-.git
-```
-
-Navigate to project folder:
-
-```bash
-cd AI-Resume-Analyzer-RAG
-```
-
-Create virtual environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate environment:
-
-Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file:
-
-```
-MISTRAL_API_KEY=your_api_key
-```
-
-Run the application:
-
-```bash
 streamlit run app.py
 ```
 
@@ -162,14 +120,6 @@ Users can ask:
 * API keys are stored using environment variables.
 * Sensitive files like `.env` and vector databases are excluded using `.gitignore`.
 
-## 🔮 Future Improvements
-
-* ATS resume score prediction
-* Job description matching
-* Resume ranking system
-* Interview question generation
-* Multiple resume comparison
-* Automated resume optimization
 
 ## 👩‍💻 Author
 
