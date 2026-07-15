@@ -1,3 +1,4 @@
+import os
 from langchain_chroma import Chroma
 from langchain_mistralai import MistralAIEmbeddings
 from dotenv import load_dotenv
@@ -9,10 +10,18 @@ docs = [
     Document(page_content="AI is widely used in healthcare, finance, education, transportation, and customer support. Popular AI applications include recommendation systems, chatbots, virtual assistants, and self-driving cars.",metadata={"source":"DL_Book"}),
 ]
 embeddings_model = MistralAIEmbeddings()
-vectorstore = Chroma.from_documents(documents = docs,
-                                    embedding= embeddings_model,
-                                    persist_directory= "chroma-db")
 
+
+
+import uuid
+
+db_path = f"chroma_db_{uuid.uuid4().hex}"
+
+vectorstore = Chroma.from_documents(
+    documents=chunks,
+    embedding=embedding_model,
+    persist_directory=db_path
+)
 result = vectorstore.similarity_search("what is used for data analysis?",k=2)
 for r in result:
     print(r.page_content)
