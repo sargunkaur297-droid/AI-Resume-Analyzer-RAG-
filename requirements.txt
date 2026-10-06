@@ -8,3 +8,4 @@ langchain-mistralai
 chromadb
 pypdf
 python-dotenv
+langchain-groq
