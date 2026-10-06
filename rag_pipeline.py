@@ -3,7 +3,10 @@
 import os
 import shutil
 import tempfile
+import time
 import uuid
+
+from httpx import HTTPStatusError
 
 from dotenv import load_dotenv
 from langchain_chroma import Chroma
@@ -54,7 +57,7 @@ User question:
 def create_models():
     """Create the embedding model and chat model used by the RAG pipeline."""
     embeddings = MistralAIEmbeddings(model="mistral-embed")
-    llm = ChatMistralAI(model="mistral-small-2603")
+    llm = ChatMistralAI(model="mistral-small-2603", max_retries=0, max_tokens=1200)
     return embeddings, llm
 
 
@@ -100,14 +103,13 @@ def analyze_resume(retriever, llm, question):
         context=context,
         question=question,
     )
-    response = llm.invoke(final_prompt)
-    return response.content
+    for attempt in range(4):
+        try:
+            response = llm.invoke(final_prompt)
+            return response.content
+        except HTTPStatusError as exc:
+            status_code = exc.response.status_code if exc.response is not None else None
+            if status_code != 429 or attempt == 3:
+                raise
+            time.sleep(5 * (2 ** attempt))
 
-
-def clear_databases():
-    """Remove Chroma databases created by previous uploads."""
-    for name in os.listdir("."):
-        if name.startswith("chroma_db_"):
-            path = os.path.join(".", name)
-            if os.path.isdir(path):
-                shutil.rmtree(path)
