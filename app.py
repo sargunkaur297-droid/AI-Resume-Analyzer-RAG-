@@ -1,4 +1,5 @@
 import glob
+import hashlib
 import os
 import shutil
 
@@ -28,6 +29,8 @@ if "db_path" not in st.session_state:
     st.session_state.db_path = None
 if "models" not in st.session_state:
     st.session_state.models = create_models()
+if "file_hash" not in st.session_state:
+    st.session_state.file_hash = None
 
 embeddings, llm = st.session_state.models
 
@@ -37,11 +40,18 @@ uploaded_file = st.sidebar.file_uploader(
 )
 
 if uploaded_file is not None:
-    with st.spinner("Reading and indexing your resume..."):
-        retriever, db_path = build_retriever(uploaded_file, embeddings)
-        st.session_state.retriever = retriever
-        st.session_state.db_path = db_path
-    st.sidebar.success("✅ Resume indexed successfully!")
+    file_bytes = uploaded_file.getvalue()
+    current_hash = hashlib.sha256(file_bytes).hexdigest()
+
+    if current_hash != st.session_state.file_hash:
+        with st.spinner("Reading and indexing your resume..."):
+            retriever, db_path = build_retriever(uploaded_file, embeddings)
+            st.session_state.retriever = retriever
+            st.session_state.db_path = db_path
+            st.session_state.file_hash = current_hash
+        st.sidebar.success("✅ Resume indexed successfully!")
+    else:
+        st.sidebar.success("✅ Resume ready")
 
 if st.session_state.retriever is None:
     st.info("📄 Upload your resume from the sidebar to begin.")
@@ -61,10 +71,18 @@ if st.button("🚀 Analyze Resume"):
     if not question.strip():
         st.warning("Please enter a question.")
     else:
+        response = None
         with st.spinner("Analyzing your resume..."):
-            response = analyze_resume(st.session_state.retriever, llm, question.strip())
-        st.subheader("📊 Resume Analysis")
-        st.markdown(response)
+            try:
+                response = analyze_resume(st.session_state.retriever, llm, question.strip())
+            except Exception as exc:
+                if getattr(exc, "response", None) is not None and exc.response.status_code == 429:
+                    st.error("⚠️ Mistral is temporarily rate-limited. Please wait a little and try again.")
+                else:
+                    st.error("⚠️ The AI service could not complete the analysis. Please try again.")
+        if response:
+            st.subheader("📊 Resume Analysis")
+            st.markdown(response)
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("⚙️ Options")
