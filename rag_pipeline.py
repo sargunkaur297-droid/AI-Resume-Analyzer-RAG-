@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
+from langchain_groq import ChatGroq
+from langchain_mistralai import MistralAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
@@ -57,7 +58,10 @@ User question:
 def create_models():
     """Create the embedding model and chat model used by the RAG pipeline."""
     embeddings = MistralAIEmbeddings(model="mistral-embed")
-    llm = ChatMistralAI(model="mistral-small-2603", max_retries=0, max_tokens=1200)
+   llm = ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0.2,
+)
     return embeddings, llm
 
 
