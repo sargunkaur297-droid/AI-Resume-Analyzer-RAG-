@@ -60,10 +60,14 @@ if st.session_state.retriever is None:
 st.subheader("🔎 Ask about your resume")
 question = st.text_area(
     "Question",
-    value=("Analyze this resume and provide: resume summary, technical skills, soft skills, "
-           "ATS score, missing skills, suitable job roles, resume improvement suggestions, "
-           "five HR interview questions, five technical interview questions, and three "
-           "project-based interview questions."),
+    value=(
+    "Analyze this resume and ALWAYS provide all of these sections: "
+    "Resume Summary, Technical Skills, Soft Skills, ATS Score, Missing Skills, "
+    "Suitable Job Roles, Resume Improvement Suggestions, "
+    "5 HR Interview Questions, 5 Technical Interview Questions, and "
+    "3 Project-Based Interview Questions. "
+    "Do not skip any section."
+),
     height=140,
 )
 
