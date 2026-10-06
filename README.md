@@ -1,133 +1,98 @@
-# AI-Resume-Analyzer-RAG-
-# 📄 AI Resume Analyzer RAG Chatbot
+# 🤖 AI Resume Analyzer — RAG
 
-An AI-powered Resume Analyzer built using **Retrieval Augmented Generation (RAG)** that helps users analyze, understand, and improve their resumes. Users can upload a resume PDF and interact with an AI chatbot that provides personalized feedback, skill analysis, and improvement suggestions.
-
-## 🚀 Project Overview
-
-Recruiters often receive hundreds of resumes, making it difficult to identify strengths, weaknesses, and skill gaps. This project uses Generative AI and RAG architecture to analyze resume content and provide context-aware responses.
-
-The system extracts information from a resume, converts it into embeddings, stores them in a vector database, and uses an AI model to answer user queries based on the uploaded document.
+An AI-powered resume analysis application built with **Retrieval Augmented Generation (RAG)**. Upload a PDF resume, retrieve the most relevant sections, and receive grounded feedback from a Mistral language model.
 
 ## ✨ Features
+- 📄 Upload a resume in PDF format
+- 🔍 Extract and chunk resume text
+- 🧠 Generate Mistral embeddings
+- 🗄️ Store chunks in ChromaDB
+- 🔎 Retrieve relevant context using MMR search
+- 🤖 Generate grounded resume feedback with Mistral
+- 🎯 Identify skills, skill gaps, job roles, and improvement areas
+- 💬 Ask custom questions about the uploaded resume
 
-* 📄 Upload resume in PDF format
-* 🔍 Extract and analyze resume content
-* 🤖 AI chatbot for resume-related questions
-* 🧠 Retrieval Augmented Generation (RAG) pipeline
-* 📚 Vector-based document search
-* 💡 Resume improvement suggestions
-* 🎯 Skill gap identification for job roles
-* 💬 Context-aware answers from uploaded resume
+## 🏗️ Architecture
 
-## 🛠️ Tech Stack
-
-### Programming Language
-
-* Python
-
-### Frontend
-
-* Streamlit
-
-### Generative AI
-
-* Large Language Model (Mistral/Gemini)
-* LangChain
-
-### Document Processing
-
-* PyPDF
-* LangChain Document Loaders
-
-### Vector Database
-
-* ChromaDB
-
-### Other Tools
-
-* Git & GitHub
-* VS Code
-* Python Virtual Environment
-
-## 🧠 How It Works (RAG Pipeline)
+This is a **single-repository full application**: the Streamlit interface and Python RAG/backend logic live together in this repository.
 
 ```
-Resume PDF
-    |
-    ↓
-PDF Text Extraction
-    |
-    ↓
-Text Chunking
-    |
-    ↓
-Embedding Generation
-    |
-    ↓
-Vector Database (ChromaDB)
-    |
-    ↓
-User Query
-    |
-    ↓
-Relevant Context Retrieval
-    |
-    ↓
-LLM Generated Response
+User → Streamlit UI (app.py)
+     → PDF extraction + chunking
+     → Mistral embeddings
+     → ChromaDB vector store
+     → MMR Retriever
+     → Relevant resume context
+     → Mistral LLM (rag_pipeline.py)
+     → Grounded resume analysis
 ```
 
-## 📂 Project Structure
-
+## 📁 Project structure
 ```
-AI-Resume-Analyzer-RAG/
-
-│
+AI-Resume-Analyzer-RAG-/
 ├── app.py
-├── chat.py
+├── rag_pipeline.py
 ├── requirements.txt
-├── README.md
 ├── .gitignore
-│
-├── utils/
-│   ├── pdf_loader.py
-│   └── vector_store.py
-│
-└── documentloaders/
-    ├── pdf.py
-    ├── test.py
-    └── vectorstores/
-        ├── DB.py
-        └── createdb.py
+└── README.md
 ```
 
+## 🛠️ Tech stack
+| Layer | Technology |
+|---|---|
+| UI | Streamlit |
+| Language | Python |
+| LLM | Mistral Small Latest |
+| Embeddings | Mistral Embed |
+| RAG framework | LangChain |
+| Vector database | ChromaDB |
+| PDF processing | PyPDF / PyPDFLoader |
+| Retrieval | MMR |
+| Environment | python-dotenv |
 
+## 🚀 Run locally
+
+```bash
+git clone https://github.com/sargunkaur297-droid/AI-Resume-Analyzer-RAG-.git
+cd AI-Resume-Analyzer-RAG-
+python -m venv .venv
+```
+
+Activate the environment, then install:
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file:
+```env
+MISTRAL_API_KEY=your_api_key_here
+```
+
+Run:
+```bash
 streamlit run app.py
 ```
 
-## 💬 Example Questions
-
-Users can ask:
-
-* "What are my strongest technical skills?"
-* "Is my resume suitable for an AI Engineer role?"
-* "What skills should I add?"
-* "Improve my resume summary"
-* "What projects should I include?"
+## 💡 Example questions
+- What are my strongest technical skills?
+- Is my resume suitable for an AI Engineer role?
+- What skills are missing for a backend developer role?
+- How can I improve my resume?
+- What interview questions could be asked about my projects?
 
 ## 🔐 Security
+- API credentials are loaded from environment variables.
+- `.env` is excluded through `.gitignore`.
+- Uploaded PDFs are processed as temporary files and removed after extraction.
+- Generated Chroma databases are ignored by Git.
 
-* API keys are stored using environment variables.
-* Sensitive files like `.env` and vector databases are excluded using `.gitignore`.
-
+## ⚠️ Limitations
+- Analysis quality depends on PDF text extraction.
+- The application currently supports PDF resumes.
+- Responses are grounded in retrieved resume context and may report unavailable information when evidence is not found.
 
 ## 👩‍💻 Author
+**Sargun Kaur** — B.Tech Computer Science & Engineering
 
-**Sargun Kaur**
-B.Tech Computer Science Engineering
-
-## 🌐 Live Demo
-
-🔗 [AI Resume Analyzer RAG Chatbot](https://fppxqusmdqguymudgsq9mn.streamlit.app)
-
-
+## 🌐 Live demo
+[Open the AI Resume Analyzer](https://fppxqusmdqguymudgsq9mn.streamlit.app)
