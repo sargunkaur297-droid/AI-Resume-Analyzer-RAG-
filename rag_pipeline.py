@@ -13,7 +13,8 @@ from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
-from langchain_mistralai import MistralAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_groq import ChatGroq
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
@@ -56,14 +57,17 @@ User question:
 
 
 def create_models():
-    """Create the embedding model and chat model used by the RAG pipeline."""
-    embeddings = MistralAIEmbeddings(model="mistral-embed")
-   llm = ChatGroq(
-    model="openai/gpt-oss-20b",
-    temperature=0.2,
-)
-    return embeddings, llm
+    """Create the local embedding model and Groq chat model."""
+    embeddings = HuggingFaceEmbeddings(
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
+    )
 
+    llm = ChatGroq(
+        model="openai/gpt-oss-20b",
+        temperature=0.2,
+    )
+
+    return embeddings, llm
 
 def build_retriever(uploaded_file, embeddings):
     """Extract a PDF, chunk it, index it in Chroma, and return a retriever."""
