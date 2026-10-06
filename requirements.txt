@@ -4,7 +4,8 @@ langchain-community
 langchain-core
 langchain-text-splitters
 langchain-chroma
-langchain-mistralai
+langchain-huggingface
+sentence-transformers
 chromadb
 pypdf
 python-dotenv
