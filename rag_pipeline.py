@@ -54,7 +54,7 @@ User question:
 def create_models():
     """Create the embedding model and chat model used by the RAG pipeline."""
     embeddings = MistralAIEmbeddings(model="mistral-embed")
-    llm = ChatMistralAI(model="mistral-small-latest")
+    llm = ChatMistralAI(model="mistral-small-2603")
     return embeddings, llm
 
 
